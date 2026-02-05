@@ -124,5 +124,35 @@ class AlumnosModel extends Model
         $res = $this->db->query($sql);
         return $res && $res->num_rows > 0;
     }
+
+    public function buscarPorDni($dni)
+    {
+        $dni = $this->escape($dni);
+        $sql = "SELECT id, nombre, apellido, foto, vence FROM alumnos WHERE dni = '$dni'";
+        $res = $this->db->query($sql);
+        return $res ? $res->fetch_assoc() : null;
+    }
+
+    // Renovar Cuota (Extender 30 días desde HOY o desde su vencimiento si es futuro)
+    public function renovarCuota($alumno_id)
+    {
+        $id = (int) $alumno_id;
+        // Obtener vencimiento actual
+        $sql = "SELECT vence FROM alumnos WHERE id = $id";
+        $res = $this->db->query($sql);
+        $venceActual = $res->fetch_assoc()['vence'];
+
+        $hoy = date('Y-m-d');
+        // Si ya venció (fecha anterior a hoy), nuevo vencimiento es hoy + 30 días
+        // Si vence en futuro (ej: mañana), se suma 30 días a esa fecha futura
+        if ($venceActual < $hoy) {
+            $nuevoVence = date('Y-m-d', strtotime('+30 days'));
+        } else {
+            $nuevoVence = date('Y-m-d', strtotime($venceActual . ' +30 days'));
+        }
+
+        $sqlUp = "UPDATE alumnos SET vence = '$nuevoVence' WHERE id = $id";
+        return $this->db->query($sqlUp);
+    }
 }
 ?>
