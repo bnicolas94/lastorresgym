@@ -1,0 +1,184 @@
+:root {
+    /* --- Modern Dark Palette --- */
+    --bg-body: #0e0e12;
+    /* Deepest background */
+    --bg-surface: #18181b;
+    /* Card/Nav background */
+    --bg-surface-hover: #27272a;
+    /* Hover state */
+
+    --primary: #8b5cf6;
+    /* Electric Violet - Main Brand Color */
+    --primary-hover: #7c3aed;
+    --secondary: #06b6d4;
+    /* Neon Cyan - Accents */
+
+    --text-main: #f3f4f6;
+    /* White/Grey */
+    --text-muted: #9ca3af;
+    /* Grey */
+
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+
+    --border-color: #27272a;
+
+    /* Typography */
+    --font-heading: 'Teko', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Spacing & Radius */
+    --radius-xl: 16px;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+
+    /* Scroll Mask Colors */
+    --scroll-mask: linear-gradient(to right, transparent, var(--bg-body));
+}
+
+[data-theme="light"] {
+    --bg-body: #f3f4f6;
+    /* Light Grey Background */
+    --bg-surface: #ffffff;
+    /* White Surface */
+    --bg-surface-hover: #f9fafb;
+
+    --primary: #7c3aed;
+    /* Violet 600 - More visible on light */
+    --primary-hover: #6d28d9;
+    --secondary: #0891b2;
+    /* Cyan 600 */
+
+    --text-main: #111827;
+    /* Grey 900 */
+    --text-muted: #4b5563;
+    /* Grey 600 - Better contrast */
+
+    --border-color: #e5e7eb;
+    /* Grey 200 */
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- Components --- */
+.card-custom {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card-custom:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.btn-primary-custom {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+.form-control-custom {
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+}
+
+.form-control-custom:focus {
+    background-color: var(--bg-body);
+    border-color: var(--primary);
+    color: var(--text-main);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+}
+
+/* --- Utilities --- */
+.glass-effect {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* --- Theme Utilities --- */
+.theme-text {
+    color: var(--text-main);
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Scroll Mask */
+.scroll-mask-right {
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+}
+
+/* Fix background-clip lint */
+.text-primary-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Transition for Theme Switch */
+body,
+.card-custom,
+.btn,
+.form-control-custom {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
