@@ -119,14 +119,11 @@ class DashboardModel extends Model
 
     public function contarEnGymAhora()
     {
-        // Calculamos la hora de corte desde PHP para respetar la zona horaria de la APP
-        // Ventana estricta: desde hace 1 hora hasta AHORA (ignorando futuro)
-        $desde = date('Y-m-d H:i:s', strtotime('-1 hour'));
-        $hasta = date('Y-m-d H:i:s');
-
-        $sql = "SELECT COUNT(DISTINCT dni) as total 
+        // Usamos la lógica de v3: Contamos asistencias de los últimos 60 minutos usando SQL NOW()
+        // Esto evita problemas de diferencia horaria entre PHP y MySQL
+        $sql = "SELECT COUNT(*) as total 
                 FROM asistencias 
-                WHERE fecha_acceso >= '$desde' AND fecha_acceso <= '$hasta'";
+                WHERE created_at >= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
 
         $res = $this->db->query($sql);
         return $res ? $res->fetch_assoc()['total'] : 0;
