@@ -145,6 +145,10 @@
                     class="nav-link-desktop <?= (strpos($_GET['url'] ?? '', 'anuncios/gestion') !== false) ? 'active' : '' ?>">
                     <i class="fas fa-bullhorn"></i> Anuncios
                 </a>
+                <a href="<?= BASE_URL ?>finanzas"
+                    class="nav-link-desktop <?= (strpos($_GET['url'] ?? '', 'finanzas') !== false) ? 'active' : '' ?>">
+                    <i class="fas fa-wallet"></i> Finanzas
+                </a>
             <?php endif; ?>
 
             <a href="<?= BASE_URL ?>rutinas"
@@ -193,8 +197,12 @@
             </a>
             <a href="<?= BASE_URL ?>anuncios/gestion"
                 class="nav-item-mobile <?= (strpos($_GET['url'] ?? '', 'anuncios/gestion') !== false) ? 'active' : '' ?>">
-                <i class="fas fa-bullhorn"></i>
                 <span>Anuncios</span>
+            </a>
+            <a href="<?= BASE_URL ?>finanzas"
+                class="nav-item-mobile <?= (strpos($_GET['url'] ?? '', 'finanzas') !== false) ? 'active' : '' ?>">
+                <i class="fas fa-wallet"></i>
+                <span>Finanzas</span>
             </a>
         <?php endif; ?>
         <a href="<?= BASE_URL ?>rutinas"
