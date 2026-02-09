@@ -487,9 +487,11 @@
         const r = document.getElementById('inputReps').value;
         const p = document.getElementById('inputPeso').value;
 
-        // Remove if exists previously to replace
+        /*
+        // Remove if exists previously to replace -> REMOVED TO ALLOW DUPLICATES
         const existingIdx = stagingList.findIndex(x => x.ejercicio_id == id);
         if (existingIdx >= 0) stagingList.splice(existingIdx, 1);
+        */
 
         stagingList.push({
             ejercicio_id: id,

@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>
         <?= APP_NAME ?>
     </title>
@@ -112,6 +113,27 @@
             .content-wrapper {
                 margin-left: 250px;
                 padding-bottom: 2rem;
+            }
+        }
+
+        /* Standalone App Fixes */
+        .sidebar {
+            padding-top: max(2rem, env(safe-area-inset-top));
+        }
+
+        @media (display-mode: standalone),
+        (display-mode: fullscreen),
+        (display-mode: minimal-ui) {
+            .content-wrapper {
+                /* 
+                  * Usamos max() para asegurar al menos un padding de 35px en modo App 
+                  * para evitar que el contenido quede debajo de la barra de estado transparente 
+                  */
+                padding-top: max(35px, env(safe-area-inset-top));
+            }
+
+            .sidebar {
+                padding-top: max(35px, env(safe-area-inset-top));
             }
         }
     </style>

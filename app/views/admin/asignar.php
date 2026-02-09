@@ -618,9 +618,11 @@
         if (currentEditIndex >= 0) {
             stagingList[currentEditIndex] = dataObj;
         } else {
-            // Remove if exists previously to replace (safety)
+            /* 
+            // Remove if exists previously to replace (safety) -> REMOVED TO ALLOW DUPLICATES (DROPSETS)
             const existingIdx = stagingList.findIndex(x => x.ejercicio_id == id);
-            if (existingIdx >= 0) stagingList.splice(existingIdx, 1);
+            if (existingIdx >= 0) stagingList.splice(existingIdx, 1); 
+            */
             stagingList.push(dataObj);
         }
 
