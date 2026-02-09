@@ -8,7 +8,7 @@ class Database
 
     private function __construct()
     {
-        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
         if ($this->conn->connect_error) {
             die("Error de conexión a la base de datos: " . $this->conn->connect_error);
